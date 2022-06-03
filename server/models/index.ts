@@ -1,5 +1,5 @@
-const sequelize = require('../db');
-const { DataTypes } = require('sequelize');
+import sequelize from '../src/db';
+import { DataTypes } from 'sequelize';
 
 const User = sequelize.define('user', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -75,4 +75,4 @@ DeviseInfo.belongsTo(Devise);
 Type.belongsToMany(Brand, { through: TypeBrand });
 Brand.belongsToMany(Type, { through: TypeBrand });
 
-module.exports = { User, Basket, BasketDevise, Devise, Type, Brand, Rating, DeviseInfo, TypeBrand };
+export default { User, Basket, BasketDevise, Devise, Type, Brand, Rating, DeviseInfo, TypeBrand };
