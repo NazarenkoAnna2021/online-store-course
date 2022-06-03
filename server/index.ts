@@ -2,9 +2,9 @@
 import express, { Application, Request, Response } from 'express';
 import sequelize from './db';
 import cors from 'cors';
-import router from '../routes';
+import router from './routes';
 
-const models = require('../models');
+const models = require('./models');
 const PORT = process.env.PORT || "5000";
 
 const app: Application = express();
