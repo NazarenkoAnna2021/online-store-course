@@ -1,15 +1,19 @@
-import IUserController from './entities/IUserController'
+import { Request, Response } from 'express';
+import { ApiError } from '../error/ApiError';
+import { IUserController } from './entities/IUserController'
 
 class UserController implements IUserController {
-    registration = async () => {
+    registration = async (req: Request, res: Response) => {
 
     }
 
-    login = async () => {
+    login = async (req: Request, res: Response) => {
 
     }
-    check = async () => {
+    check = async (req: Request, res: Response, next: any) => {
+        const { id } = req.query;
 
+        !id ? next(ApiError.badRequest('No id')) : res.json(id);
     }
 };
 
