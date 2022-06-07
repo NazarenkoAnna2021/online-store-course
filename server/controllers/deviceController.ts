@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { IController } from "./entities/IController";
 import { Device, DeviceInfo } from '../models';
 import { ApiError } from '../error/ApiError';
@@ -10,7 +10,7 @@ import { IInfo } from './entities/IInfo';
 import { TData } from './entities/TData';
 
 class DeviceController implements IController {
-    create = async (req: Request, res: Response, next: any) => {
+    create = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const { name, price, brandId, typeId, info } = req.body;
             const device: Model<IDevice> = await Device.create({ name, price, brandId, typeId, img: this.saveImg(req.files?.img) });
@@ -30,7 +30,7 @@ class DeviceController implements IController {
         return res.json(devices);
     }
 
-    getOne = async (req: Request, res: Response, next: any) => {
+    getOne = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const { id } = req.params;
             const devices = await Device.findOne({ where: { id }, include: [{ model: DeviceInfo, as: 'info' }] });
@@ -44,7 +44,7 @@ class DeviceController implements IController {
     private saveImg = (img: any) => {
         let filename = v4() + '.jpg';
         img && img.mv(path.resolve(__dirname, '../', 'static', filename));
-        
+
         return filename;
     }
 
