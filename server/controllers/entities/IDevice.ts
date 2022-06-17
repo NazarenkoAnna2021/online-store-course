@@ -4,4 +4,4 @@ export interface IDevice {
     price: number,
     rating: number,
     img: string,
-}
+};
