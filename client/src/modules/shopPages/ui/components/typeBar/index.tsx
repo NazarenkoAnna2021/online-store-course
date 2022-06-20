@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { ListGroup } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux';
-import { typeSlice } from '../../../../../store/redux/reducers/typeSlice';
+import { deviceSlice } from '../../../../../store/redux/reducers/deviceSlice';
 import { styles } from './styles';
 
 export const TypeBar: FC = () => {
-    const { types, selectedType } = useAppSelector(state => state.types);
-    const { setSelectedType } = typeSlice.actions;
+    const { types, selectedType } = useAppSelector(state => state.devices);
+    const { setSelectedType } = deviceSlice.actions;
     const dispatch = useAppDispatch();
 
     return (

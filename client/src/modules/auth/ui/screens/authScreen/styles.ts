@@ -7,7 +7,7 @@ export const styles: TStyles = {
         alignItems: 'center',
         height: window.innerHeight - 54,
     },
-    card: { 
+    card: {
         width: 600,
         padding: 50
     },
@@ -17,5 +17,10 @@ export const styles: TStyles = {
     },
     header: {
         margin: 'auto'
-    }
+    },
+    buttonsBlock: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginTop: '16px'
+    },
 };

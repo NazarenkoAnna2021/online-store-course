@@ -1,12 +1,12 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, memo } from 'react';
 import { Card } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux';
-import { brandSlice } from '../../../../../store/redux/reducers/brandSlice';
+import { deviceSlice } from '../../../../../store/redux/reducers/deviceSlice';
 import { styles } from './styles';
 
 export const BrandBar: FC = memo(() => {
-    const { brands, selectedBrand } = useAppSelector(state => state.brands);
-    const { setSelectedBrand } = brandSlice.actions;
+    const { brands, selectedBrand } = useAppSelector(state => state.devices);
+    const { setSelectedBrand } = deviceSlice.actions;
     const dispatch = useAppDispatch();
 
     return (
