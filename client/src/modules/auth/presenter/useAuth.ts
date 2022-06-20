@@ -3,17 +3,7 @@ import { useLocation, useNavigate } from "react-router";
 import { useAppDispatch } from "../../../hooks/redux";
 import { login, registration } from "../../../http/userAPI";
 import { userSlice } from "../../../store/redux/reducers/userSlice";
-import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../../../utils/constants";
-
-const signIn = async (email: string, password: string) => {
-    const response = await registration(email, password);
-    return response;
-};
-
-const onLogin = async (email: string, password: string) => {
-    const response: any = await login(email, password);
-    return response;
-};
+import { LOGIN_ROUTE, SHOP_ROUTE } from "../../../utils/constants";
 
 export const useAuth = () => {
     const location = useLocation();
@@ -26,19 +16,6 @@ export const useAuth = () => {
     const [password, setPassword] = useState('');
 
     const onClick = async () => {
-        // try {
-        //     let data;
-        //     if (!isLogin) {
-        //         data = signIn(email, password);
-        //     } else {
-        //         data = await onLogin(email, password);
-        //     }
-        //         dispatch(setIsAuth(true));
-        //         dispatch(setUser({ id: data.id, email: data.email, role: data.role }));
-        //         navigate(SHOP_ROUTE);
-        // } catch (e: any) {
-        //     alert(e)
-        // }
         try {
             let data;
             if (isLogin) {

@@ -9,14 +9,13 @@ import { userSlice } from './store/redux/reducers/userSlice';
 
 
 export const App: FC = () => {
-	const { setIsAuth } = userSlice.actions;
+	const { setIsAuth, setUser } = userSlice.actions;
 	const dispatch = useAppDispatch();
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		check().then(data => {
-			console.log(data);
-			
+			dispatch(setUser(true));
 			dispatch(setIsAuth(true));
 		}).finally(() => setIsLoading(false));
 	}, []);

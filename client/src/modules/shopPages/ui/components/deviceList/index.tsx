@@ -1,11 +1,11 @@
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import { Row } from 'react-bootstrap';
 import { useAppSelector } from '../../../../../hooks/redux';
 import { DeviceItem } from '../deviceItem';
 import { styles } from './styles';
 
-export const DeviceList: FC = memo(() => {
-    const { devices } = useAppSelector(state => state.devices);
+export const DeviceList: FC = () => {
+    const { devices, selectedBrand, selectedType } = useAppSelector(state => state.devices);
 
     return (
         <Row style={styles.container}>
@@ -14,4 +14,4 @@ export const DeviceList: FC = memo(() => {
             )}
         </Row>
     );
-});
+};
