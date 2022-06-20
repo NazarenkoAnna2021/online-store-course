@@ -6,8 +6,7 @@ import { styles } from './styles';
 
 export const DeviceList: FC = memo(() => {
     const { devices } = useAppSelector(state => state.devices);
-    console.log('devices', devices);
-    
+
     return (
         <Row style={styles.container}>
             {devices.map(device =>

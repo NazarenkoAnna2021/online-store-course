@@ -1,10 +1,6 @@
 import { $authHost, $host } from "./index";
-import jwt_decode from "jwt-decode";
-import { IType } from "../entities/IType";
-import { IBrand } from "../entities/IBrand";
-import { IDevice } from "../entities/IDevice";
 
-export const createType = async (type: IType) => {
+export const createType = async (type: { name: string }) => {
     const { data } = await $authHost.post('api/type', type);
     return data;
 };
@@ -14,7 +10,7 @@ export const fetchTypes = async () => {
     return data;
 };
 
-export const createBrand = async (brand: IBrand) => {
+export const createBrand = async (brand: { name: string }) => {
     const { data } = await $authHost.post('api/brand', brand);
     return data;
 };

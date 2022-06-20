@@ -2,15 +2,14 @@ import { FC, useCallback, useMemo } from "react";
 import { Nav, Navbar, Button, Container } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
-import { appStateSlice } from "../../../../store/redux/reducers/appStateSlice";
 import { userSlice } from "../../../../store/redux/reducers/userSlice";
 import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../../../../utils/constants";
 import { styles } from "./styles";
 
 export const NavBar: FC = () => {
     const navigate = useNavigate();
-    const { isAuth } = useAppSelector(state => state.appState);
-    const { setIsAuth } = appStateSlice.actions;
+    const { isAuth } = useAppSelector(state => state.user);
+    const { setIsAuth } = userSlice.actions;
     const { setUser } = userSlice.actions;
     const dispatch = useAppDispatch();
 

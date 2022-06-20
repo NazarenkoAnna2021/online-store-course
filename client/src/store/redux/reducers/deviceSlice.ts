@@ -1,45 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IBrand } from "../../../entities/IBrand";
 import { IDevice } from "../../../entities/IDevice";
 import { IInfo } from "../../../entities/IInfo";
+import { IType } from "../../../entities/IType";
 
 interface IDeviceState {
     devices: IDevice[],
+    brands: IBrand[],
+    selectedBrand: number | null,
+    types: IType[],
+    selectedType: number | null,
     infos: IInfo[],
     isLoading: boolean,
     error: string,
 };
 
 const initialState: IDeviceState = {
-    devices: [
-        {
-            id: 0,
-            name: 'string',
-            price: 1000,
-            rating: 0,
-            img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSvlyn61Se1xPmtCOkZE9YpvTmsGXME1uG7A&usqp=CAU',
-        },
-        {
-            id: 1,
-            name: 'string',
-            price: 1000,
-            rating: 0,
-            img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSvlyn61Se1xPmtCOkZE9YpvTmsGXME1uG7A&usqp=CAU',
-        },
-        {
-            id: 2,
-            name: 'string',
-            price: 1000,
-            rating: 0,
-            img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSvlyn61Se1xPmtCOkZE9YpvTmsGXME1uG7A&usqp=CAU',
-        },
-        {
-            id: 3,
-            name: 'string',
-            price: 1000,
-            rating: 0,
-            img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSvlyn61Se1xPmtCOkZE9YpvTmsGXME1uG7A&usqp=CAU',
-        },
-    ],
+    devices: [],
+    brands: [],
+    selectedBrand: null,
+    types: [],
+    selectedType: null,
     infos: [],
     isLoading: false,
     error: '',
@@ -57,6 +38,18 @@ export const deviceSlice = createSlice({
         },
         addInfo(state, action) {
             state.infos.push(action.payload);
+        },
+        setBrands(state, action){
+            state.brands = action.payload;
+        },
+        setSelectedBrand(state, action) {
+            state.selectedBrand = action.payload;
+        },
+        setType(state, action) {
+            state.types = action.payload;
+        },
+        setSelectedType(state, action) {
+            state.selectedType = action.payload;
         }
     },
 });

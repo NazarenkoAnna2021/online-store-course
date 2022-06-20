@@ -5,22 +5,21 @@ import { useAppDispatch } from './hooks/redux';
 import { check } from './http/userAPI';
 import { NavBar } from './modules/shared/components/navbar';
 import { AppRouter } from './navigation/AppRouter';
-import { appStateSlice } from './store/redux/reducers/appStateSlice';
 import { userSlice } from './store/redux/reducers/userSlice';
 
 
 export const App: FC = () => {
-	const { setIsAuth } = appStateSlice.actions;
+	const { setIsAuth } = userSlice.actions;
 	const dispatch = useAppDispatch();
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
-	/* useEffect(() => {
-		setTimeout(() =>
-			check().then(data => {
-				dispatch(setIsAuth(true));
-			}).finally(() => setIsLoading(false))
-			, 1000)
-	}, []); */
+	useEffect(() => {
+		check().then(data => {
+			console.log(data);
+			
+			dispatch(setIsAuth(true));
+		}).finally(() => setIsLoading(false));
+	}, []);
 
 	return (
 		<BrowserRouter>

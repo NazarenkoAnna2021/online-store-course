@@ -5,7 +5,7 @@ import { tokenMiddleware } from '../middleware/tokenMiddleware';
 const deviceRouter = Router();
 
 
-deviceRouter.post('/',tokenMiddleware('ADMIN'), deviceController.create);
+deviceRouter.post('/', deviceController.create);
 deviceRouter.get('/get', deviceController.getAll);
 deviceRouter.get('/:id', deviceController.getOne);
 

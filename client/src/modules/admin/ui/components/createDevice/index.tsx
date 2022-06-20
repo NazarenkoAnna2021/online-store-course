@@ -3,8 +3,7 @@ import { Button, Col, Container, Dropdown, Form, Modal, Row } from 'react-bootst
 import { IInfo } from '../../../../../entities/IInfo';
 import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux';
 import { createDevice } from '../../../../../http/deviceAPI';
-import { brandSlice } from '../../../../../store/redux/reducers/brandSlice';
-import { typeSlice } from '../../../../../store/redux/reducers/typeSlice';
+import { deviceSlice } from '../../../../../store/redux/reducers/deviceSlice';
 import { styles } from './styles';
 
 interface IProps {
@@ -12,10 +11,8 @@ interface IProps {
 }
 
 export const CreateDevice: FC<IProps> = ({ handleClose }) => {
-    const { types, selectedType } = useAppSelector(state => state.types);
-    const { brands, selectedBrand } = useAppSelector(state => state.brands);
-    const { setSelectedType } = typeSlice.actions;
-    const { setSelectedBrand } = brandSlice.actions;
+    const { types, selectedType, brands, selectedBrand } = useAppSelector(state => state.devices);
+    const { setSelectedType, setSelectedBrand } = deviceSlice.actions;
     const dispatch = useAppDispatch();
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);

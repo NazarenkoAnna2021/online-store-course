@@ -32,29 +32,27 @@ class UserController implements IUserController {
 
     login = async (req: Request, res: Response, next: NextFunction) => {
         const { email, password } = req.body;
-        const user: Model<IUser> | null = await User.findOne({ where: { email } });
-
+        const user = await User.findOne({ where: { email } });
         if (!user) {
-            return next(ApiError.internal('User not found'));
-        };
-
-        const comparePassword = bcript.compareSync(password, user.getDataValue('password'));
-
+            return next(ApiError.internal('Пользователь не найден'));
+        }
+        let comparePassword = bcript.compareSync(password, user.getDataValue('password'));
         if (!comparePassword) {
-            return next(ApiError.internal('Invalid password'));
-        };
+            return next(ApiError.internal('Указан неверный пароль'));
+        }
 
-        const token = this.generateJwt(user.getDataValue('id'), email, user.getDataValue('role'));
+        const token = this.generateJwt(user.getDataValue('id'), user.getDataValue('email'), user.getDataValue('role'));        
+
+        return res.json({ token });
+    }
+
+    check = async (req: any, res: Response, next: NextFunction) => {
+        const { user } = req.params;
+        const token = this.generateJwt(user.id, user.email, user.role);
 
         return res.json({ token });
     }
 
-    check = async (req: any , res: Response, next: NextFunction) => {        
-        const token = this.generateJwt(req.store.user.id, req.store.user.email, req.store.user.role);
-
-        return res.json({ token });
-    }
-    
     private generateJwt = (id: number, email: string, role: string) => jwt.sign({ id, email, role }, String(process.env.SECRET_KEY), { expiresIn: '24h' })
 };
 

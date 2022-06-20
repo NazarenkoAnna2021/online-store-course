@@ -35,7 +35,7 @@ export const DeviceScreen: FC = () => {
         <Container style={styles.container}>
             <Row>
                 <Col md={4}>
-                    <Image src={device.img} />
+                    <Image src={process.env.REACT_APP_API_URL + device.img} style={styles.deviceImg} />
                 </Col>
                 <Col md={4} >
                     <h2 style={styles.name}>{device.name}</h2>
@@ -54,12 +54,14 @@ export const DeviceScreen: FC = () => {
             <Row style={styles.description}>
                 <h1>Характеристики</h1>
                 {DESCRIPTION.map((description, index) =>
-                    <Row key={description.id} style={{ background: index % 2 === 0 ? 'lightgray' : 'transparent', ...styles.descriptionItem }}>
+                    <Row
+                        key={description.id}
+                        style={{ background: index % 2 === 0 ? 'lightgray' : 'transparent', ...styles.descriptionItem }}
+                    >
                         {description.title}: {description.description}
                     </Row>
                 )}
             </Row>
-
         </Container>
     );
 };

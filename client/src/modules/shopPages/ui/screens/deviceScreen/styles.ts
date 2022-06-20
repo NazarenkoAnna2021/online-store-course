@@ -4,6 +4,10 @@ export const styles: TStyles = {
     container: {
         marginTop: '20px',
     },
+    deviceImg:{
+        height: '500px', 
+        width: '400px'
+    },
     name: {
         textAlign: 'center',
     },

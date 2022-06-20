@@ -18,9 +18,9 @@ export const AdminScreen: FC = () => {
         setIsShown(true);
     };
 
-    const handleShowType = useCallback(() => openModal(<CreateType />), [isShown]);
+    const handleShowType = useCallback(() => openModal(<CreateType handleClose={handleClose} />), [isShown]);
 
-    const handleShowBrand = useCallback(() => openModal(<CreateBrand />), []);
+    const handleShowBrand = useCallback(() => openModal(<CreateBrand handleClose={handleClose} />), []);
 
     const handleShowDevice = useCallback(() => openModal(<CreateDevice handleClose={handleClose} />), []);
 

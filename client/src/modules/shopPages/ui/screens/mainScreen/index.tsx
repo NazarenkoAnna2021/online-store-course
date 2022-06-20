@@ -2,17 +2,13 @@ import { FC, useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useAppDispatch } from '../../../../../hooks/redux';
 import { fetchBrands, fetchDevices, fetchTypes } from '../../../../../http/deviceAPI';
-import { brandSlice } from '../../../../../store/redux/reducers/brandSlice';
-import {deviceSlice} from '../../../../../store/redux/reducers/deviceSlice';
-import { typeSlice } from '../../../../../store/redux/reducers/typeSlice';
+import { deviceSlice } from '../../../../../store/redux/reducers/deviceSlice';
 import { BrandBar } from '../../components/brandBar';
 import { DeviceList } from '../../components/deviceList';
 import { TypeBar } from '../../components/typeBar';
 
 export const MainScreen: FC = () => {
-    const { setBrands } = brandSlice.actions;
-    const { setType } = typeSlice.actions;
-    const { setDevice } = deviceSlice.actions;
+    const { setDevice, setType, setBrands } = deviceSlice.actions;
     const dispatch = useAppDispatch();
 
     useEffect(() => {
