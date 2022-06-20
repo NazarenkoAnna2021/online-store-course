@@ -9,7 +9,7 @@ interface ITypeState {
 };
 
 const initialState: ITypeState = {
-    types: [{id: 0, name: 'холодильники'}, {id: 1, name: 'телефоны'}, {id: 2, name: 'пылесосы'}],
+    types: [],
     selectedType: null,
     isLoading: false,
     error: "",
@@ -19,7 +19,10 @@ export const typeSlice = createSlice({
     name: 'types',
     initialState,
     reducers: {
-        setSelectedType(state, action){
+        setType(state, action) {
+            state.types = action.payload;
+        },
+        setSelectedType(state, action) {
             state.selectedType = action.payload;
         }
     },

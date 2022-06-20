@@ -44,14 +44,13 @@ class UserController implements IUserController {
             return next(ApiError.internal('Invalid password'));
         };
 
-        const token = this.generateJwt(user.getDataValue('id'), email, user.getDataValue('password'));
+        const token = this.generateJwt(user.getDataValue('id'), email, user.getDataValue('role'));
 
         return res.json({ token });
     }
 
-    check = async (req: Request, res: Response, next: NextFunction) => {
-        const { email, role, id } = req.body;
-        const token = this.generateJwt(id, email, role);
+    check = async (req: any , res: Response, next: NextFunction) => {        
+        const token = this.generateJwt(req.store.user.id, req.store.user.email, req.store.user.role);
 
         return res.json({ token });
     }

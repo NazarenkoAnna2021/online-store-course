@@ -9,7 +9,7 @@ interface IBrandState {
 };
 
 const initialState: IBrandState = {
-    brands: [{ id: 0, name: 'apple' }, { id: 1, name: 'salmsung' }, { id: 2, name: 'panasoic' }],
+    brands: [],
     selectedBrand: null,
     isLoading: false,
     error: "",
@@ -19,6 +19,9 @@ export const brandSlice = createSlice({
     name: 'types',
     initialState,
     reducers: {
+        setBrands(state, action){
+            state.brands = action.payload;
+        },
         setSelectedBrand(state, action) {
             state.selectedBrand = action.payload;
         }
