@@ -10,8 +10,8 @@ interface IProps {
 export const CreateBrand: FC<IProps> = ({ handleClose }) => {
     const [brand, setBrand] = useState('');
 
-    const addType = () => {
-        createBrand({ name: brand }).then(data => setBrand(''));
+    const addBrand = () => {
+        createBrand({ name: brand }).then(data => handleClose());
     };
 
     return (
@@ -26,7 +26,7 @@ export const CreateBrand: FC<IProps> = ({ handleClose }) => {
             </Form>
             <Modal.Footer>
                 <Button variant="outline-danger" onClick={handleClose}>Закрыть</Button>
-                <Button variant="outline-success" onClick={addType}>Добавить</Button>
+                <Button variant="outline-success" onClick={addBrand}>Добавить</Button>
             </Modal.Footer>
         </Container>
     );

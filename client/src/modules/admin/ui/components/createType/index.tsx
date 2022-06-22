@@ -10,7 +10,7 @@ export const CreateType: FC<IProps> = ({ handleClose }) => {
     const [type, setType] = useState('');
 
     const addType = () => {
-        createType({ name: type }).then(data => setType(''));
+        createType({ name: type }).then(data => handleClose());
     };
 
     return (

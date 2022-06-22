@@ -28,7 +28,7 @@ export const MainScreen: FC = () => {
                 <Col md={9}>
                     <BrandBar />
                     <DeviceList />
-                    <Pages/>
+                    {/* <Pages/> */}
                 </Col>
             </Row>
         </Container>
