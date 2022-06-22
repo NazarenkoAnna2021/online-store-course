@@ -22,7 +22,7 @@ export const CreateBrand: FC<IProps> = ({ handleClose }) => {
                 </Modal.Title>
             </Modal.Header>
             <Form>
-                <Form.Control placeholder='введите название бренда' />
+                <Form.Control value={brand} onChange={e => setBrand(e.target.value)} placeholder='введите название бренда' />
             </Form>
             <Modal.Footer>
                 <Button variant="outline-danger" onClick={handleClose}>Закрыть</Button>
