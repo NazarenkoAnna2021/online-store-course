@@ -21,6 +21,7 @@ export const NavBar: FC = () => {
     const logOut = () => {
         setAuth();
         dispatch(setUser({}));
+        localStorage.removeItem('token');
     };
 
     const openAuthScreen = useCallback(() => navigate(LOGIN_ROUTE), []);
