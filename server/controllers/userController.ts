@@ -33,6 +33,9 @@ class UserController implements IUserController {
     login = async (req: Request, res: Response, next: NextFunction) => {
         const { email, password } = req.body;
         const user = await User.findOne({ where: { email } });
+        const userData = { id: user?.getDataValue('id'), email: user?.getDataValue('email'), role: user?.getDataValue('role') };
+        req.params = { user: JSON.stringify(userData) };
+
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'));
         }
@@ -41,7 +44,7 @@ class UserController implements IUserController {
             return next(ApiError.internal('Указан неверный пароль'));
         }
 
-        const token = this.generateJwt(user.getDataValue('id'), user.getDataValue('email'), user.getDataValue('role'));        
+        const token = this.generateJwt(userData.id, userData.email, userData.role);
 
         return res.json({ token });
     }

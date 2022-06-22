@@ -23,7 +23,7 @@ export const CreateDevice: FC<IProps> = ({ handleClose }) => {
 
     const deleteInfo = (id: number | undefined) => setInfo(info.filter(i => i.id !== id));
 
-    const changeInfo = (key: number, value: string, id: number) => {
+    const changeInfo = (key: string, value: string, id?: number) => {
         setInfo(info.map(i => i.id === id ? { ...i, [key]: value } : i))
     }
 
@@ -36,8 +36,8 @@ export const CreateDevice: FC<IProps> = ({ handleClose }) => {
         formData.append('name', name);
         formData.append('price', `${price}`);
         formData.append('img', file);
-        formData.append('brandId', String(selectedBrand));
-        formData.append('typeId', String(selectedType));
+        formData.append('brandId', `${selectedBrand}`);
+        formData.append('typeId', `${selectedType}`);
         formData.append('info', JSON.stringify(info));
         createDevice(formData).then(data => handleClose());
     };
@@ -54,7 +54,7 @@ export const CreateDevice: FC<IProps> = ({ handleClose }) => {
                     <Dropdown.Toggle>Выберите тип</Dropdown.Toggle>
                     <Dropdown.Menu>
                         {types.map(type =>
-                            <Dropdown.Item key={type.id} onClick={() => dispatch(setSelectedType(type))} >{type.name}</Dropdown.Item>
+                            <Dropdown.Item key={type.id} onClick={() => dispatch(setSelectedType(type.id))} >{type.name}</Dropdown.Item>
                         )}
                     </Dropdown.Menu>
                 </Dropdown>
@@ -62,7 +62,7 @@ export const CreateDevice: FC<IProps> = ({ handleClose }) => {
                     <Dropdown.Toggle>Выберите бренд</Dropdown.Toggle>
                     <Dropdown.Menu>
                         {brands.map(brand =>
-                            <Dropdown.Item key={brand.id} onClick={() => dispatch(setSelectedBrand(brand))}>{brand.name}</Dropdown.Item>
+                            <Dropdown.Item key={brand.id} onClick={() => dispatch(setSelectedBrand(brand.id))}>{brand.name}</Dropdown.Item>
                         )}
                     </Dropdown.Menu>
                 </Dropdown>
@@ -89,10 +89,10 @@ export const CreateDevice: FC<IProps> = ({ handleClose }) => {
                 {info.map(i =>
                     <Row key={i.id} style={styles.distance}>
                         <Col md={4}>
-                            <Form.Control placeholder='название' />
+                            <Form.Control onChange={e => changeInfo('title', e.target.value, i.id)} placeholder='название' />
                         </Col>
                         <Col md={4}>
-                            <Form.Control placeholder='описание' />
+                            <Form.Control onChange={e => changeInfo('description', e.target.value, i.id)} placeholder='описание' />
                         </Col>
                         <Col>
                             <Button onClick={() => deleteInfo(i.id)}>Удалить</Button>

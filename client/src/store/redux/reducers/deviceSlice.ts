@@ -6,6 +6,7 @@ import { IType } from "../../../entities/IType";
 
 interface IDeviceState {
     devices: IDevice[],
+    count: number,
     brands: IBrand[],
     selectedBrand: number | null,
     types: IType[],
@@ -17,6 +18,7 @@ interface IDeviceState {
 
 const initialState: IDeviceState = {
     devices: [],
+    count: 0,
     brands: [],
     selectedBrand: null,
     types: [],
@@ -31,7 +33,8 @@ export const deviceSlice = createSlice({
     initialState,
     reducers: {
         setDevice(state, action) {
-            state.devices = action.payload;
+            state.devices = action.payload.rows;
+            state.count = action.payload.count;
         },
         addDevice(state, action) {
             state.devices.push(action.payload);
@@ -39,7 +42,7 @@ export const deviceSlice = createSlice({
         addInfo(state, action) {
             state.infos.push(action.payload);
         },
-        setBrands(state, action){
+        setBrands(state, action) {
             state.brands = action.payload;
         },
         setSelectedBrand(state, action) {

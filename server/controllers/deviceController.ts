@@ -13,6 +13,7 @@ class DeviceController implements IController {
     create = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const { name, price, brandId, typeId, info } = req.body;
+            
             const device: Model<IDevice> = await Device.create({ name, price, brandId, typeId, img: this.saveImg(req.files?.img) });
 
             this.writeInfo(info, device.getDataValue('id'));

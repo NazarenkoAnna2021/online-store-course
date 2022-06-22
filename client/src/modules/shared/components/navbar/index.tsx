@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo } from "react";
+import { FC, useCallback, useEffect, useMemo } from "react";
 import { Nav, Navbar, Button, Container } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
@@ -21,6 +21,7 @@ export const NavBar: FC = () => {
     const logOut = () => {
         setAuth();
         dispatch(setUser({}));
+        localStorage.removeItem('token');
     };
 
     const openAuthScreen = useCallback(() => navigate(LOGIN_ROUTE), []);
